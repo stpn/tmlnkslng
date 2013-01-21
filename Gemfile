@@ -31,7 +31,7 @@ gem 'god'
 gem 'redis'
 #### FRONTEND GEMS ####
 gem 'jquery-rails'
-gem 'less-rails'
+#gem 'less-rails'
 
 
 
@@ -44,6 +44,7 @@ gem 'capistrano'
 ####PARSING GEMS#####
 gem 'htmlentities'
 
+gem 'rjb', '1.4.3'
 
 group :development do
 	gem 'metrical', :git => "git://github.com/bkleinen/metrical.git"
@@ -60,7 +61,7 @@ end
 # in production environments by default.
 group :assets do
   gem 'uglifier', '>= 1.0.3'
-  gem 'therubyracer'
+ # gem 'therubyracer'
   gem 'coffee-rails'
  end
 

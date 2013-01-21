@@ -6,7 +6,7 @@ require "bundler/capistrano"
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 
 
-set :application, "videai"
+set :application, "timelinksnlp"
 
 set :repository, "git@github.com:stpn/tmlnkslng.git"
 set :scm, :git
@@ -107,7 +107,7 @@ namespace :stanford do
   desc "Copy language assets"
   task :copy, :roles => :app  do
     puts ENV['GEM_HOME']
-    run  "if [ ! -d /home/ubuntu/videai/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.3.2/bin/grammar ]; then cd #{latest_release}/ && sh wgetunzip.sh https://s3.amazonaws.com/Vide_ai-dev/FullEng.zip /home/ubuntu/videai/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.3.2/bin/; fi"     
+    run  "if [ ! -d /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/grammar ]; then cd #{latest_release}/ && sh wgetunzip.sh https://s3.amazonaws.com/Vide_ai-dev/FullEng.zip /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/; fi"     
   end
 
 end
@@ -143,7 +143,7 @@ end
 
 after :deploy, "web_assets:copy_resque_assets"
 after :deploy, "deploy:migrate"
-after :deploy, "stanford:copy"
+#after :deploy, "stanford:copy"
 
   
 
