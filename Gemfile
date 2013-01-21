@@ -34,6 +34,7 @@ gem 'jquery-rails'
 gem 'less-rails'
 
 
+
 #### SERVER GEMS ####
 #gem 'aws-s3', :require => "aws/s3"
 gem "aws-sdk", :git => 'https://github.com/aws/aws-sdk-ruby.git'
