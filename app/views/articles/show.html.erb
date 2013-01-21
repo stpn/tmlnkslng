@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @article.code %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @article.person %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @article.location %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @article.organization %>
+</p>
+
+<p>
+  <b>Misc:</b>
+  <%= @article.misc %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @article.date %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @article.time %>
+</p>
+
+<p>
+  <b>Money:</b>
+  <%= @article.money %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%= @article.number %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

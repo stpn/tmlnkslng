@@ -1,0 +1,304 @@
+GIT
+  remote: git://github.com/bkleinen/metrical.git
+  revision: 626bdbaa7d0fa6b5d2a065a4aa93f598592d3c4c
+  specs:
+    metrical (0.1.0)
+      metric_fu (~> 2.1.1)
+      rcov (~> 0.9)
+
+GIT
+  remote: git://github.com/wr0ngway/graylog2_exceptions.git
+  revision: 797924acd1aa89852605230812d8cfd27da90969
+  specs:
+    graylog2_exceptions (1.3.0)
+      gelf (~> 1.3)
+
+GIT
+  remote: https://github.com/aws/aws-sdk-ruby.git
+  revision: f078218724b7ac4d0fcb4fe22ab76d7f1d45fad3
+  specs:
+    aws-sdk (1.8.0)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (3.2.11)
+      actionpack (= 3.2.11)
+      mail (~> 2.4.4)
+    actionpack (3.2.11)
+      activemodel (= 3.2.11)
+      activesupport (= 3.2.11)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      journey (~> 1.0.4)
+      rack (~> 1.4.0)
+      rack-cache (~> 1.2)
+      rack-test (~> 0.6.1)
+      sprockets (~> 2.2.1)
+    activemodel (3.2.11)
+      activesupport (= 3.2.11)
+      builder (~> 3.0.0)
+    activerecord (3.2.11)
+      activemodel (= 3.2.11)
+      activesupport (= 3.2.11)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activerecord-import (0.2.11)
+      activerecord (~> 3.0)
+      activerecord (~> 3.0)
+    activeresource (3.2.11)
+      activemodel (= 3.2.11)
+      activesupport (= 3.2.11)
+    activesupport (3.2.11)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    annotate (2.5.0)
+      rake
+    ansi (1.4.3)
+    arel (3.0.2)
+    arrayfields (4.7.4)
+    bind-it (0.2.6)
+      rjb
+    bluff (0.1.0)
+    builder (3.0.4)
+    capistrano (2.14.1)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    chronic (0.9.0)
+    churn (0.0.25)
+      chronic (>= 0.2.3)
+      hirb
+      json_pure
+      main
+      ruby_parser (~> 2.3)
+      sexp_processor (~> 3.0)
+    coderay (1.0.8)
+    coffee-rails (3.2.2)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.2.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.4.0)
+    colored (1.2)
+    commonjs (0.2.6)
+    erubis (2.7.0)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
+    fattr (2.2.1)
+    flay (1.2.1)
+      hoe (>= 1.11.0)
+      ruby_parser (>= 1.1.0)
+      sexp_processor (>= 3.0.0)
+    flog (2.3.0)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    gelf (1.3.2)
+      json
+    god (0.13.1)
+    googlecharts (1.6.8)
+    graylog2-resque (0.5.1)
+      gelf
+      resque
+    haml (3.1.7)
+    highline (1.6.15)
+    hike (1.2.1)
+    hirb (0.7.0)
+    hoe (3.4.1)
+      rake (>= 0.8, < 11.0)
+    htmlentities (4.3.1)
+    httparty (0.10.0)
+      multi_json (~> 1.0)
+      multi_xml
+    i18n (0.6.1)
+    japgolly-Saikuro (1.1.1.0)
+    journey (1.0.4)
+    jquery-rails (2.2.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    json (1.7.6)
+    json_pure (1.7.6)
+    less (2.2.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.2.6)
+      actionpack (>= 3.1)
+      less (~> 2.2.0)
+    libv8 (3.11.8.13)
+    mail (2.4.4)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    main (5.1.1)
+      arrayfields (>= 4.7.4)
+      chronic (>= 0.6.2)
+      fattr (>= 2.2.0)
+      map (>= 5.1.0)
+    map (6.2.0)
+    metric_fu (2.1.3.7.19)
+      activesupport (>= 2.0.0)
+      arrayfields (= 4.7.4)
+      bluff
+      churn (= 0.0.25)
+      coderay
+      fattr (= 2.2.1)
+      flay (= 1.2.1)
+      flog (= 2.3.0)
+      googlecharts
+      japgolly-Saikuro (>= 1.1.1.0)
+      map (= 6.2.0)
+      metric_fu-roodi (>= 2.2.0)
+      rails_best_practices (~> 0.10.1)
+      rcov (~> 0.8)
+      reek (= 1.2.12)
+      sexp_processor (~> 3.0.3)
+    metric_fu-roodi (2.2.0)
+      ruby_parser
+    mime-types (1.19)
+    multi_json (1.5.0)
+    multi_xml (0.5.2)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.6.3)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
+    nokogiri (1.5.6)
+    open4 (1.3.0)
+    pg (0.14.1)
+    polyglot (0.3.3)
+    rack (1.4.4)
+    rack-cache (1.2)
+      rack (>= 0.4)
+    rack-protection (1.3.2)
+      rack
+    rack-ssl (1.3.2)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rails (3.2.11)
+      actionmailer (= 3.2.11)
+      actionpack (= 3.2.11)
+      activerecord (= 3.2.11)
+      activeresource (= 3.2.11)
+      activesupport (= 3.2.11)
+      bundler (~> 1.0)
+      railties (= 3.2.11)
+    rails_best_practices (0.10.1)
+      activesupport
+      colored
+      erubis
+      haml
+      i18n
+      ruby-progressbar
+      ruby_parser
+    railties (3.2.11)
+      actionpack (= 3.2.11)
+      activesupport (= 3.2.11)
+      rack-ssl (~> 1.3.2)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (>= 0.14.6, < 2.0)
+    rake (0.9.2.2)
+    rcov (0.9.11)
+    rdoc (3.12)
+      json (~> 1.4)
+    redis (3.0.2)
+    redis-namespace (1.2.1)
+      redis (~> 3.0.0)
+    reek (1.2.12)
+      ripper_ruby_parser (~> 0.0.7)
+      ruby2ruby (~> 1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ref (1.0.2)
+    resque (1.23.0)
+      multi_json (~> 1.0)
+      redis-namespace (~> 1.0)
+      sinatra (>= 0.9.2)
+      vegas (~> 0.1.2)
+    resque-status (0.4.0)
+      resque (~> 1.19)
+    ripper_ruby_parser (0.0.8)
+      sexp_processor (~> 3.0)
+    rjb (1.4.5)
+    ruby-prof (0.12.1)
+    ruby-progressbar (1.0.2)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.10)
+    sinatra (1.3.3)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    sprockets (2.2.2)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.7)
+    stanford-core-nlp (0.5.1)
+      bind-it (~> 0.2.5)
+    therubyracer (0.11.3)
+      libv8 (~> 3.11.8.12)
+      ref
+    thor (0.16.0)
+    tilt (1.3.3)
+    treetop (1.4.12)
+      polyglot
+      polyglot (>= 0.3.1)
+    turn (0.9.6)
+      ansi
+    tzinfo (0.3.35)
+    uglifier (1.3.0)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
+    uuidtools (2.1.3)
+    vegas (0.1.11)
+      rack (>= 1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord-import
+  annotate (>= 2.5.0)
+  arrayfields
+  aws-sdk!
+  capistrano
+  coffee-rails
+  fattr
+  gelf
+  god
+  graylog2-resque
+  graylog2_exceptions!
+  hoe
+  htmlentities
+  jquery-rails
+  json_pure (~> 1.7.5)
+  less-rails
+  map
+  metrical!
+  open4
+  pg
+  rails (~> 3.2.6)
+  rake (~> 0.9.2.2)
+  redis
+  resque
+  resque-status
+  ruby-prof
+  sqlite3
+  stanford-core-nlp (= 0.5.1)
+  therubyracer
+  turn
+  uglifier (>= 1.0.3)

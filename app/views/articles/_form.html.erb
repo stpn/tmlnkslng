@@ -1,0 +1,53 @@
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_area :code %>
+  </div>
+  <div class="field">
+    <%= f.label :person %><br />
+    <%= f.text_area :person %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_area :location %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br />
+    <%= f.text_area :organization %>
+  </div>
+  <div class="field">
+    <%= f.label :misc %><br />
+    <%= f.text_area :misc %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.text_area :date %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.text_area :time %>
+  </div>
+  <div class="field">
+    <%= f.label :money %><br />
+    <%= f.text_area :money %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_area :number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
