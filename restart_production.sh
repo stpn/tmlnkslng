@@ -1,4 +1,10 @@
 #!/bin/bash
-ps -A -o pid,command | grep [r]esque-#{Resque::Version}
-god terminate
-god -c config/resque-production.god
+sudo /etc/init.d/redis-server stop &
+wait
+sudo /etc/init.d/nginx restart &
+wait
+god terminate &
+wait
+god -c config/resque-production.god &
+wait
+sudo /etc/init.d/redis-server start

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  respond_to :json
   # GET /articles
   # GET /articles.json
   def index
