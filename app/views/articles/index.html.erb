@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Code</th>
+    <th>Content</th>
     <th>Person</th>
     <th>Location</th>
     <th>Organization</th>
@@ -11,6 +12,8 @@
     <th>Time</th>
     <th>Money</th>
     <th>Number</th>
+    <th>Ordinal</th>
+    <th>Callback_URL</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +22,7 @@
 <% @articles.each do |article| %>
   <tr>
     <td><%= article.code %></td>
+    <td><%= article.content %></td>
     <td><%= article.person %></td>
     <td><%= article.location %></td>
     <td><%= article.organization %></td>
@@ -27,6 +31,8 @@
     <td><%= article.time %></td>
     <td><%= article.money %></td>
     <td><%= article.number %></td>
+    <td><%= article.ordinal %></td>
+    <td><%= article.Callback_url %></td>        
     <td><%= link_to 'Show', article %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td>
     <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
