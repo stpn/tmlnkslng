@@ -107,10 +107,16 @@ namespace :stanford do
   desc "Copy language assets"
   task :copy, :roles => :app  do
     puts ENV['GEM_HOME']
-    run  "if [ ! -d /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/grammar ]; then cd #{latest_release}/ && sh wgetunzip.sh https://s3.amazonaws.com/Vide_ai-dev/FullEng.zip /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/; fi"     
+    run  "if [ ! -d /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/grammar ]; then cd #{latest_release}/ && sh wgetunzip.sh https://s3.amazonaws.com/Vide_ai-dev/FullEngLatest.zip /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/; fi"     
   end
 
+
+  task :force_copy, :roles => :app do
+    run "cd #{latest_release}/ && sh wgetunzip.sh https://s3.amazonaws.com/Vide_ai-dev/FullEngLatest.zip /home/ubuntu/timelinksnlp/shared/bundle/ruby/1.9.1/gems/stanford-core-nlp-0.5.1/bin/;"
+  end
 end
+
+
 
 
 
