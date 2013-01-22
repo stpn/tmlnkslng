@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
     a = self
     a.update_column(:original, a.content)
     texts = a.content.split(".")
-    pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse, :ner, :dcoref)    
+    pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse, :ner, :dcoref)
     texts.each do |text|
       text = a.annotate(text, pipeline)
       entity_hash = {"date" => {}, "location" => {}, "misc" => {}, "money" => {}, "number" => {}, "organization" => {}, "person" => {}, "time" => {}, "ordinal" => {}, "duration" => {}, "percent" => {}}
@@ -35,7 +35,9 @@ class Article < ActiveRecord::Base
   def populate_self(groups)
     a = self
     groups.each do |attrib, vals|
-      a.update_attributes(attrib => vals.join(", "))
+      if ["organization", "person", "location"].include?(attrib)
+        a.update_attributes(attrib => vals.join(", "))
+      end
     end
   end
 
@@ -85,7 +87,7 @@ class Article < ActiveRecord::Base
 
   def annotate(text, pipeline)
     text = text.gsub(/[^A-Za-z0-9\s]/,"").squish
-    text = StanfordCoreNLP::Annotation.new(text)        
+    text = StanfordCoreNLP::Annotation.new(text)
     pipeline.annotate(text)
     return text
   end
