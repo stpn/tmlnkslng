@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include WebThings
+  
   attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed, :duration, :ordinal, :percent
 
   after_create :process
@@ -7,6 +9,7 @@ class Article < ActiveRecord::Base
   def select_entities
     a = self
     a.update_column(:original, a.content)
+    wrds =  Hash.new{|h,k| h[k] = [] }
     texts = a.content.split(".")
     pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse, :ner, :dcoref)
     texts.each do |text|
@@ -15,15 +18,16 @@ class Article < ActiveRecord::Base
       text.get(:sentences).each do |sentence|
         sentence.get(:tokens).each do |token|
           if token.get(:named_entity_tag).to_s && token.get(:named_entity_tag).to_s != "O"
-            puts " #{token.get(:named_entity_tag).to_s} #{token.get(:text).to_s} #{token.get(:index).to_s}"
+            puts "GOT #{token.get(:named_entity_tag).to_s} WTH #{token.get(:text).to_s}"
             entity_hash[token.get(:named_entity_tag).to_s.downcase][token.get(:index).to_s] = token.get(:text).to_s
           end
         end
       end
       entity_hash = entity_hash.reject{|k,v| v.flatten.empty?}
-      groups = a.chain_entities(entity_hash)
-      a.populate_self(groups)
+      a.chain_entities(entity_hash, wrds)
     end
+    puts "GROUPS: #{wrds}"    
+    a.populate_self(wrds)
     self.update_attributes(:processed => true)
   end
 
@@ -39,11 +43,14 @@ class Article < ActiveRecord::Base
         a.update_attributes(attrib => vals.join(", "))
       end
     end
+    a.location = a.location.split(", ").uniq.join(", ")
+    a.person = a.person.split(", ").uniq.join(", ")
+    a.organization = a.organization.split(", ").uniq.join(", ")
+    a.save!
   end
 
-  def chain_entities(entity_hash)
+  def chain_entities(entity_hash, wrds)
     sequences = []
-    wrds =  Hash.new{|h,k| h[k] = [] }
     entity_hash.each do |tag, words|
       #  if ["location", "person"].include?(tag)
       indexes = words.keys
