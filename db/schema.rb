@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122005540) do
+ActiveRecord::Schema.define(:version => 20130122011851) do
 
   create_table "articles", :force => true do |t|
     t.text     "code"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20130122005540) do
     t.boolean  "processed"
     t.text     "ordinal"
     t.text     "callback_url"
+    t.text     "duration"
+    t.text     "percent"
   end
 
 end

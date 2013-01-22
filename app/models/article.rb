@@ -1,29 +1,34 @@
 class Article < ActiveRecord::Base
-  attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed
+  attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed, :duration, :ordinal, :percent
 
   after_create :process
   after_commit :respond, :if => :processed
 
   def select_entities
     a = self
-    text = a.annotate(a.content)
-    entity_hash = {"date" => {}, "location" => {}, "misc" => {}, "money" => {}, "number" => {}, "organization" => {}, "person" => {}, "time" => {}, "ordinal" => {}}
-    text.get(:sentences).each do |sentence|
-      sentence.get(:tokens).each do |token|
-        if token.get(:named_entity_tag).to_s && token.get(:named_entity_tag).to_s != "O"
-          puts " #{token.get(:named_entity_tag).to_s} #{token.get(:text).to_s} #{token.get(:index).to_s}"
-          entity_hash[token.get(:named_entity_tag).to_s.downcase][token.get(:index).to_s] = token.get(:text).to_s
+    a.update_column(:original, a.content)
+    texts = a.content.split(".")
+    pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse, :ner, :dcoref)    
+    texts.each do |text|
+      text = a.annotate(text, pipeline)
+      entity_hash = {"date" => {}, "location" => {}, "misc" => {}, "money" => {}, "number" => {}, "organization" => {}, "person" => {}, "time" => {}, "ordinal" => {}, "duration" => {}, "percent" => {}}
+      text.get(:sentences).each do |sentence|
+        sentence.get(:tokens).each do |token|
+          if token.get(:named_entity_tag).to_s && token.get(:named_entity_tag).to_s != "O"
+            puts " #{token.get(:named_entity_tag).to_s} #{token.get(:text).to_s} #{token.get(:index).to_s}"
+            entity_hash[token.get(:named_entity_tag).to_s.downcase][token.get(:index).to_s] = token.get(:text).to_s
+          end
         end
       end
+      entity_hash = entity_hash.reject{|k,v| v.flatten.empty?}
+      groups = a.chain_entities(entity_hash)
+      a.populate_self(groups)
     end
-    entity_hash = entity_hash.reject{|k,v| v.flatten.empty?}
-    groups = a.chain_entities(entity_hash)
-    a.populate_self(groups)
     self.update_attributes(:processed => true)
   end
 
   def respond
-    attrs = a.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
+    attrs = self.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
     self.make_put_request(self.callback_url, attrs)
   end
 
@@ -78,11 +83,9 @@ class Article < ActiveRecord::Base
     sequence
   end
 
-  def annotate(text)
-    self.update_column(:original, text)
+  def annotate(text, pipeline)
     text = text.gsub(/[^A-Za-z0-9\s]/,"").squish
-    pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse, :ner, :dcoref)
-    text = StanfordCoreNLP::Text.new(text)
+    text = StanfordCoreNLP::Annotation.new(text)        
     pipeline.annotate(text)
     return text
   end
