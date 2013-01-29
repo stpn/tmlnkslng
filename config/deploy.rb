@@ -154,7 +154,7 @@ end
 
 
 after :deploy, "web_assets:copy_resque_assets"
-after :deploy, "deploy:migrate"
+#after :deploy, "deploy:migrate"
 #after :deploy, "stanford:copy"
 
   
