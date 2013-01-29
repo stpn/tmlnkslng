@@ -117,7 +117,13 @@ namespace :stanford do
 end
 
 
-
+namespace :passenger do
+  desc "Restart Application"
+  task :restart do
+#    run "sudo /etc/init.d/nginx restart"
+    run "cd #{latest_release} && sh restart_production.sh"
+  end
+end
 
 
 # namespace :deploy do

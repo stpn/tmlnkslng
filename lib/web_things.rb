@@ -19,4 +19,13 @@ module WebThings
     response = Net::HTTP.new(@uri.host, @uri.port).start {|http| http.request(request) }
   end
 
+
+  def make_post_request(url, body)
+    @uri = URI(url)
+    request = Net::HTTP::Post.new(@uri.path, initheader = {'Content-Type' =>'application/json'})
+    request.body = body
+    response = Net::HTTP.new(@uri.host, @uri.port).start {|http| http.request(request) }
+  end
+
+
 end

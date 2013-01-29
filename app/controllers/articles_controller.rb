@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save        
-        format.json { render json: @article, status: :created, location: @article }
+        format.json { render json: @article, id: @article.id }
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }

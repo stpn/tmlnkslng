@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
   include WebThings
   
-  attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed, :duration, :ordinal, :percent
+  attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed, :duration, :ordinal, :percent, :info
 
   after_create :process
   after_commit :respond, :if => :processed
@@ -33,7 +33,7 @@ class Article < ActiveRecord::Base
 
   def respond
     attrs = self.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
-    self.make_put_request(self.callback_url, attrs)
+    self.make_post_request(self.callback_url, attrs)
   end
 
   def populate_self(groups)
