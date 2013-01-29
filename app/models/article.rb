@@ -43,9 +43,15 @@ class Article < ActiveRecord::Base
         a.update_attributes(attrib => vals.join(", "))
       end
     end
-    a.location = a.location.split(", ").uniq.join(", ")
-    a.person = a.person.split(", ").uniq.join(", ")
-    a.organization = a.organization.split(", ").uniq.join(", ")
+    if a.location
+      a.location = a.location.split(", ").uniq.join(", ")
+    end
+    if a.person      
+      a.person = a.person.split(", ").uniq.join(", ")
+    end
+    if a.organization
+      a.organization = a.organization.split(", ").uniq.join(", ")
+    end
     a.save!
   end
 
