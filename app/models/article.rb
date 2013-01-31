@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
   
   attr_accessible :code, :date, :location, :misc, :money, :number, :organization, :person, :time, :content, :original, :callback_url, :processed, :duration, :ordinal, :percent, :info
 
+  validates :info, :uniqueness => true
+
   after_create :process
   after_commit :respond, :if => :processed
 
@@ -32,8 +34,12 @@ class Article < ActiveRecord::Base
   end
 
   def respond
-    attrs = self.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
-    self.make_post_request(self.callback_url, attrs)
+    a = self
+    attrs = a.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
+    if !attrs.keys.empty?
+      attrs = {:article => attrs}
+      a.make_post_request(a.callback_url, attrs)
+    end
   end
 
   def populate_self(groups)
@@ -44,15 +50,14 @@ class Article < ActiveRecord::Base
       end
     end
     if a.location
-      a.location = a.location.split(", ").uniq.join(", ")
+      a.update_attributes(:location => a.location.split(", ").uniq.join(", "))
     end
     if a.person      
-      a.person = a.person.split(", ").uniq.join(", ")
+      a.update_attributes(:person => a.person.split(", ").uniq.join(", "))
     end
     if a.organization
-      a.organization = a.organization.split(", ").uniq.join(", ")
+      a.update_attributes(:organization => a.organization.split(", ").uniq.join(", "))
     end
-    a.save!
   end
 
   def chain_entities(entity_hash, wrds)

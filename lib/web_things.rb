@@ -13,7 +13,7 @@ module WebThings
   end
 
   def make_put_request(url, body)
-    require 'web_things'
+    require 'net/http'
     @uri = URI(url)
     request = Net::HTTP::Put.new(@uri.path, initheader = {'Content-Type' =>'application/json'})
     request.body = body
@@ -22,7 +22,7 @@ module WebThings
 
 
   def make_post_request(url, body)
-    require 'web_things'
+    require 'net/http'
     @uri = URI(url)
     request = Net::HTTP::Post.new(@uri.path, initheader = {'Content-Type' =>'application/json'})
     request.body = body

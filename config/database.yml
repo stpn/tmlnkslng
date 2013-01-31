@@ -19,7 +19,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: timelinks
+  host: localhost
+  username: timelinks
+  host: localhost
+  password: timelinks
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  timeout: 15000
