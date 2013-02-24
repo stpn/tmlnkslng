@@ -292,6 +292,6 @@ DEPENDENCIES
   rjb (= 1.4.3)
   ruby-prof
   sqlite3
-  stanford-core-nlp (= 0.5.1)!
+  stanford-core-nlp!
   turn
   uglifier (>= 1.0.3)
