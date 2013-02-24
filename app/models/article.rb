@@ -21,7 +21,9 @@ class Article < ActiveRecord::Base
         sentence.get(:tokens).each do |token|
           if token.get(:named_entity_tag).to_s && token.get(:named_entity_tag).to_s != "O"
             puts "GOT #{token.get(:named_entity_tag).to_s} WTH #{token.get(:text).to_s}"
-            entity_hash[token.get(:named_entity_tag).to_s.downcase][token.get(:index).to_s] = token.get(:text).to_s
+            if entity_hash[token.get(:named_entity_tag).to_s.downcase]
+              entity_hash[token.get(:named_entity_tag).to_s.downcase][token.get(:index).to_s] = token.get(:text).to_s
+            end
           end
         end
       end
@@ -35,9 +37,9 @@ class Article < ActiveRecord::Base
 
   def respond
     a = self
-    attrs = a.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }.to_json
+    attrs = a.attributes.reject{|k,v| v.nil? || ["id", "created_at", "updated_at", "callback_url"].include?(k) }
     if !attrs.keys.empty?
-      attrs = {:article => attrs}
+      attrs = {:article => attrs}.to_json
       a.make_post_request(a.callback_url, attrs)
     end
   end

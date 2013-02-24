@@ -13,7 +13,7 @@ set :scm, :git
 set :git_shallow_clone, 1
 set :branch, "master"
 
-set :location, "ec2-23-23-158-122.compute-1.amazonaws.com"
+set :location, "ec2-54-235-64-36.compute-1.amazonaws.com"
 
 role :app , location
 role :web , location
