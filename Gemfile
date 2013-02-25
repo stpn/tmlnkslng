@@ -13,7 +13,7 @@ gem 'hoe'# , '~> 1.5.1'
 # gem 'youtube_it', :git =>     "https://github.com/stpn/youtube_it.git"  #,'2.1.3', :path => 'vendor/gems/youtube_it-2.1.3'
 # gem "opencv", :git => "http://github.com/ruby-opencv/ruby-opencv"
 
-gem 'stanford-core-nlp' #, :git => "git@github.com:stpn/stanford-core-nlp.git"
+gem 'stanford-core-nlp', '0.5.1'#, :git => "git@github.com:stpn/stanford-core-nlp.git"
 
 
 gem "json_pure", "~> 1.7.5"
